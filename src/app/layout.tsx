@@ -1,16 +1,12 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
+import { Inter } from "next/font/google";
 import "./globals.css";
 
-const geist = localFont({
-  src: "./fonts/geist.woff2",
-  variable: "--font-geist",
-});
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "QuizGuard AI | Assessment Platform",
-  description:
-    "AI-Proctored Web Assessment System with Dynamic Scoring",
+  description: "AI-Proctored Web Assessment System with Dynamic Scoring",
 };
 
 export default function RootLayout({
@@ -19,8 +15,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={geist.className}>
-      <body className="bg-slate-50 text-slate-900 min-h-screen">
+    <html lang="en" className="scroll-smooth">
+      <body
+        className={`${inter.className} bg-slate-50 text-slate-900 min-h-screen antialiased`}
+      >
         {children}
       </body>
     </html>
