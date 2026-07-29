@@ -6,14 +6,15 @@ import { Eye, EyeOff, Mail, Lock, User, ShieldCheck } from "lucide-react";
 
 export default function SignupPage() {
   const [showPassword, setShowPassword] = useState(false);
+  const [role, setRole] = useState<"student" | "teacher">("student");
 
   return (
     <main className="flex min-h-screen items-center justify-center bg-[#f3eefc] p-4 font-sans">
       <div className="w-full max-w-md rounded-[2rem] bg-white p-8 shadow-2xl border border-white/50">
-        <div className="mb-8 flex flex-col items-center justify-center text-center">
+        <div className="mb-6 flex flex-col items-center justify-center text-center">
           <Link
             href="/"
-            className="mb-6 flex h-12 w-12 items-center justify-center rounded-xl bg-blue-600 text-white shadow-sm transition-transform hover:scale-105"
+            className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-blue-600 text-white shadow-sm transition-transform hover:scale-105"
           >
             <ShieldCheck className="h-7 w-7" />
           </Link>
@@ -21,8 +22,31 @@ export default function SignupPage() {
             Create an account
           </h1>
           <p className="mt-2 text-sm text-slate-500">
-            Start testing smarter with QuizGuard.
+            Start testing smarter with DynoQuizz.
           </p>
+        </div>
+
+        <div className="mb-6 flex rounded-xl bg-slate-100 p-1">
+          <button
+            onClick={() => setRole("student")}
+            className={`flex-1 rounded-lg py-2 text-sm font-medium transition-all ${
+              role === "student"
+                ? "bg-white text-slate-900 shadow-sm"
+                : "text-slate-500 hover:text-slate-700"
+            }`}
+          >
+            Student
+          </button>
+          <button
+            onClick={() => setRole("teacher")}
+            className={`flex-1 rounded-lg py-2 text-sm font-medium transition-all ${
+              role === "teacher"
+                ? "bg-white text-slate-900 shadow-sm"
+                : "text-slate-500 hover:text-slate-700"
+            }`}
+          >
+            Teacher
+          </button>
         </div>
 
         <button className="flex w-full items-center justify-center gap-3 rounded-full border border-slate-200 bg-white px-4 py-3 text-sm font-medium text-slate-700 transition-all hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-slate-200">
@@ -117,7 +141,7 @@ export default function SignupPage() {
           </div>
 
           <button className="mt-6 flex w-full items-center justify-center rounded-full bg-black px-4 py-3.5 text-sm font-medium text-white transition-transform hover:scale-[1.02] active:scale-[0.98] shadow-lg shadow-black/10">
-            Create Account
+            Create {role.charAt(0).toUpperCase() + role.slice(1)} Account
           </button>
         </form>
 
